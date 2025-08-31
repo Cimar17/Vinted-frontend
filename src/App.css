@@ -1,0 +1,30 @@
+/* =======================
+   APP.CSS — Styles globaux
+   ======================= */
+
+/* Reset simple */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Corps du site */
+body {
+  font-family: Arial, sans-serif;
+  color: #222; /* texte par défaut */
+  background: #fff; /* fond blanc */
+}
+
+/* Conteneur principal */
+.container {
+  max-width: 1280px;
+  margin: 0 auto; /* centre horizontalement */
+  padding: 0 16px; /* petit espace interne */
+}
+
+/* Liens */
+a {
+  color: inherit; /* garde la couleur du parent */
+  text-decoration: none;
+}

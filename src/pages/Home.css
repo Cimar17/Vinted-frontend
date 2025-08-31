@@ -1,0 +1,119 @@
+/**************************************************
+ * HOME.CSS — Styles spécifiques à la page Home
+ **************************************************/
+
+/* ====== HERO (image + tear) ====== */
+.hero {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  overflow: hidden; /* cache ce qui dépasse */
+}
+
+/* Image de fond */
+.hero-bg {
+  position: absolute;
+  inset: 0; /* top/right/bottom/left: 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Carte blanche au-dessus */
+.hero-card {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+
+  width: 412px;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-title {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #222;
+}
+
+/* Bouton dans la hero */
+.hero-card .btn.primary {
+  width: 190px;
+  height: 46px;
+  font-size: 16px;
+  padding: 0;
+  text-align: center;
+}
+
+/* Bande “déchirée” en bas */
+.hero-tear {
+  position: absolute; /* absolute : collé au bas/gauche du parent .hero */
+  bottom: 0;
+  left: 0;
+  width: 100%; /* couvre toute la largeur */
+  z-index: 2; /* placé au-dessus du fond et de l'image */
+}
+
+/* ====== Liste d’annonces ====== */
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* Carte annonce */
+.card {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-owner {
+  font-size: 12px;
+  color: #8e8e8e;
+}
+
+/* Visuel produit */
+.card-picture {
+  background: #f7f7f7;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-infos .price {
+  font-weight: 700;
+}
+
+/* Petit hover
+   - translateY(-1px) : décale très légèrement l’image vers le haut
+   - brightness(0.98) : assombrit un peu (effet visuel de clic/survol)
+   - transition: 0.2s ease : rend l’effet fluide et progressif */
+.card:hover .card-picture {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+  transition: 0.2s ease;
+}

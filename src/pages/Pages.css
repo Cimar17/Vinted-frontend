@@ -1,0 +1,31 @@
+/**************************************************
+ * PAGES.CSS — Styles communs (toutes pages)
+ **************************************************/
+
+/* Structure de page */
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  padding: 24px;
+}
+
+/* Boutons réutilisables */
+.btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #22aeb2;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  filter: brightness(0.97);
+}
