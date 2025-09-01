@@ -106,3 +106,10 @@
   cursor: pointer;
   white-space: nowrap;
 }
+
+/* Bouton spécial : Déconnexion */
+.btn.ghost.logout-btn {
+  background: #c2175b;
+  border-color: #c2175b;
+  color: #fff;
+}

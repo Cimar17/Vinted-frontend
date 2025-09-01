@@ -102,7 +102,7 @@ const Header = ({
             </Link>
           </>
         ) : (
-          <button className="btn ghost" onClick={handleLogout}>
+          <button className="btn ghost logout-btn" onClick={handleLogout}>
             Se déconnecter
           </button>
         )}

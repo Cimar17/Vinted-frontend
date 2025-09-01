@@ -1,0 +1,36 @@
+/* ====== Publish Page ====== */
+.publish-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.publish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.publish-form input,
+.publish-form textarea,
+.publish-form button {
+  width: 100%; /* force à s’étendre sur toute la largeur dispo */
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box; /* évite que le padding casse la largeur */
+}
+
+.publish-form button {
+  background: #22aeb2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
