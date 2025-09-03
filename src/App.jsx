@@ -8,15 +8,37 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
+// Stripe
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
 // Pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 // UI
 import Header from "./components/Header";
+
+/* ===================== Stripe ===================== */
+// Clé publique de test
+const stripePromise = loadStripe(
+  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
+);
+
+// Options d’affichage/transaction
+const stripeOptions = {
+  mode: "payment",
+  amount: 2000, // ex : 20.00 (en CENTIMES). Le vrai montant sera géré côté /payment.
+  currency: "eur", // Devise de la transaction
+  appearance: {
+    /* ...optionnel... */
+  },
+};
+/* =================================================== */
 
 const App = () => {
   /* ================= AUTH ================= */
@@ -85,6 +107,14 @@ const App = () => {
           <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/publish" element={<Publish userToken={userToken} />} />
+          <Route
+            path="/payment"
+            element={
+              <Elements stripe={stripePromise} options={stripeOptions}>
+                <Payment userToken={userToken} />
+              </Elements>
+            }
+          />
         </Routes>
       </div>
     </Router>
@@ -105,4 +135,9 @@ export default App;
   • Le Home sert à LIRE ces filtres (appel API + affichage).
   • Certains filtres utilisent "" comme valeur initiale (string vide) 
     pour autoriser des champs d’input réellement vides (sinon React mettrait toujours 0).
-*/
+- Paiement (Stripe) :
+  • stripePromise = connexion avec la clé publique (pk_test_...).
+  • Elements = enveloppe obligatoire pour sécuriser et partager le contexte Stripe.
+  • Les options (mode, currency, appearance) définissent le type de transaction.
+  • La clé secrète (sk_test_...) reste dans le backend, jamais exposée ici.
+    */

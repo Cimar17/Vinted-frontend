@@ -4,11 +4,11 @@
 // - Layout : image à gauche (400x600) et infos produit à droite (400x600)
 
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./Pages.css"; // styles communs (page, wrapper, btn…)
-import "./Offer.css"; // styles spécifiques à la page Offer
+import "./Pages.css";
+import "./Offer.css";
 
 const Offer = () => {
   // State : données de l’offre + état de chargement
@@ -16,6 +16,7 @@ const Offer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams(); // lit l’id dans l’URL (/offer/:id)
+  const navigate = useNavigate(); // hook pour rediriger
 
   // Auto : fetch API quand le composant se monte ou si id change
   useEffect(() => {
@@ -47,7 +48,7 @@ const Offer = () => {
         </div>
 
         {/* Bloc infos produit */}
-        <aside className="offer-panel">
+        <div className="offer-panel">
           <p className="offer-price">{offer.product_price} €</p>
 
           {/* Tableau des détails */}
@@ -80,8 +81,21 @@ const Offer = () => {
             <span className="owner-name">{offer.owner?.account?.username}</span>
           </div>
 
-          <button className="btn primary">Acheter</button>
-        </aside>
+          {/* Bouton Acheter → redirection vers /payment avec infos envoyées */}
+          <button
+            className="btn primary"
+            onClick={() => {
+              navigate("/payment", {
+                state: {
+                  title: offer.product_name,
+                  price: offer.product_price,
+                },
+              });
+            }}
+          >
+            Acheter
+          </button>
+        </div>
       </div>
     </main>
   );
